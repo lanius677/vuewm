@@ -30,7 +30,7 @@
 <style scoped lang="less">
 .footer {
   display: flex;
-  font-size: 20px;
+  font-size: 14px;
   background-color: #fff;
   border-top: 0.5px solid #eee;
   .item {
