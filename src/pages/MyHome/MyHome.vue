@@ -10,6 +10,7 @@
           <van-icon name="arrow" />
         </div>
       </div>
+
       <!-- 主要内容 -->
       <div class="main">
         <div class="main-bg">
@@ -33,7 +34,7 @@
           </div>
         </div>
         <van-tabs class="van-tabs">
-          <van-tab v-for="(i,index) in data.centent_nav_list" :key="index" :title="i.tab">
+          <van-tab v-for="(i, index) in data.centent_nav_list" :key="index" :title="i.tab">
             <Store :storeList="i.data"></Store>
           </van-tab>
         </van-tabs>
@@ -165,35 +166,42 @@ const data = reactive({
 </script>
 
 <style scoped lang="less">
-/deep/ .van-tabs__wrap{
+/deep/ .van-tabs__wrap {
   border-radius: 30px;
   border: 1px solid #f5f5f5;
 }
+
 .home {
   height: 100%;
   display: flex;
   flex-flow: column;
+
   .content {
     flex: 1;
     overflow-y: auto;
 
     .main {
       margin-top: -20px;
+
       .main-bg {
         background-image: linear-gradient(#fff, #f5f5f5);
         padding: 10px 20px 0 20px;
         border-radius: 30px 30px 0 0;
         position: relative;
+
         .classify {
           padding: 20px 0;
+
           .big-classify {
             display: flex;
+
             div {
               flex: 1;
               display: flex;
               justify-content: center;
               flex-flow: column;
               align-items: center;
+
               span {
                 font-size: 50px;
                 padding: 0 5px 0 0;
@@ -201,6 +209,7 @@ const data = reactive({
                 height: 50px;
                 margin-bottom: 5px;
               }
+
               p {
                 align-items: center;
                 margin: 2px 3px 0 0;
@@ -208,22 +217,26 @@ const data = reactive({
               }
             }
           }
+
           .small-classify {
             display: flex;
             flex-wrap: wrap;
             margin-top: 10px;
+
             div {
               display: flex;
               flex-flow: column;
               justify-content: center;
               align-items: center;
               width: 20%;
+
               span {
                 font-size: 30px;
                 width: 30px;
                 height: 30px;
                 margin: 10px;
               }
+
               p {
                 align-items: center;
                 margin: 2px 3px 0 0;
@@ -232,9 +245,11 @@ const data = reactive({
             }
           }
         }
+
         .search {
           position: relative;
           background-color: #fff;
+
           .search-text {
             position: absolute;
             background-color: #ffc400;
@@ -247,6 +262,7 @@ const data = reactive({
             line-height: 32px;
             font-size: 14px;
           }
+
           input {
             width: 100%;
             border-radius: 20px;
@@ -263,14 +279,17 @@ const data = reactive({
       justify-content: space-between;
       align-items: center;
       padding: 20px 20px 40px 20px;
+
       .text {
         font-size: 20px;
         font-weight: 600;
       }
+
       .location {
         span {
           margin: 0 5px;
         }
+
         font-size: 14px;
       }
     }
