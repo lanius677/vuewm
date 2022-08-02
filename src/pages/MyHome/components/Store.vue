@@ -1,6 +1,6 @@
 <template>
   <div class="store-list">
-    <div v-for="(i,index) in storeList" :key="index">
+    <div v-for="(i,index) in storeList" :key="index" class="store-list-item">
       <StoreItem :item="i"></StoreItem>
     </div>
   </div>
@@ -16,5 +16,8 @@ const storeList = defineProps(['storeList'])
 </script>
 
 <style lang="less" scoped>
-
+.store-list-item{
+  margin-top: 10px;
+  margin-right: 5px;
+}
 </style>
