@@ -3,7 +3,7 @@ import './style.css'
 import './assets/icons/iconfont/iconfont.css';
 import App from './App.vue'
 import 'amfe-flexible';
-import { Button, Icon, Tab, Tabs, TreeSelect, Stepper, ActionBar, ActionBarIcon, ActionBarButton, Toast,Popup  } from 'vant';
+import { Button, Icon, Tab, Tabs, TreeSelect, Stepper, ActionBar, ActionBarIcon, ActionBarButton, Toast, Popup } from 'vant';
 import router from '@/router/index';
 import store from '@/store/index';
 
