@@ -139,7 +139,7 @@ const handleAddCart = (type: string) => {
     })
   })
   store.commit('ADDCART', newList)
-  type === 'buy' ? toCart : ""
+  type === 'buy' ? toCart() : ""
 
 }
 
@@ -152,22 +152,20 @@ const toCart = () => {
 //点击购买
 const clickBuy = () => {
   handleAddCart('buy');
-
 }
 
 //客服的点击事件
 const service = () => {
- Toast.fail({message: '敬请期待', className: 'toast'})
+  Toast.fail({ message: '敬请期待', className: 'toast' })
 
 }
 </script>
 <style>
 .toast {
-	z-index: 10000 !important;
+  z-index: 10000 !important;
 }
 </style>
 <style scoped lang="less">
-
 .storeDetails {
   height: 100%;
   display: flex;
