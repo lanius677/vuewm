@@ -1,12 +1,17 @@
 <template>
   <div class="cart">
-    <div class="content">购物车</div>
+    <Header :title="title"></Header>
+    <Blank></Blank>
+    <Footer></Footer>
   </div>
-  <Footer></Footer>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import Footer from "@/components/Footer.vue";
+import Blank from '@/components/Blank.vue';
+import Header from '@/components/Header.vue';
+import {ref} from 'vue';
+const title=ref('购物车')
 </script>
 
 <style scoped lang="less">
@@ -14,6 +19,7 @@ import Footer from "@/components/Footer.vue";
   height: 100%;
   display: flex;
   flex-flow: column;
+
   .content {
     flex: 1;
     overflow-y: auto;
