@@ -1,6 +1,7 @@
 <template>
   <div class="contentItem">
     <div class="left">
+      <van-checkbox :name="item.id" v-if="showCheckbox" checked-color="	#1989fa"></van-checkbox>
       <img :src="item.pic" alt="">
       <div class="text">
         <div class="title">{{item.title}}</div>
@@ -24,7 +25,7 @@
 
 <script setup lang="ts">
 import { ref, defineProps } from 'vue';
-const { item ,showAdd,addClick,onChange} = defineProps(['item','showAdd','addClick','onChange'])
+const { item ,showAdd,addClick,onChange,showCheckbox} = defineProps(['item','showAdd','addClick','onChange','showCheckbox'])
 const value = ref(1)
 
 
