@@ -20,6 +20,7 @@ declare module '@vue/runtime-core' {
     VanCheckboxGroup: typeof import('vant/es')['CheckboxGroup']
     VanIcon: typeof import('vant/es')['Icon']
     VanStepper: typeof import('vant/es')['Stepper']
+    VanSubmitBar: typeof import('vant/es')['SubmitBar']
     VanTab: typeof import('vant/es')['Tab']
     VanTabs: typeof import('vant/es')['Tabs']
     VanTreeSelect: typeof import('vant/es')['TreeSelect']
