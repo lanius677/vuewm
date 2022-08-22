@@ -3,7 +3,7 @@
   <div class="cartDetails">
     <!-- 商品列表 -->
     <div class="content">
-      <van-checkbox-group v-model="data.checked">
+      <van-checkbox-group v-model="data.checked" @change="groupChange">
         <div v-for="(i, index) in store.state.cartList" :key="index">
           <FoodAdd :item="i" :showCheckbox="true" :onChange="onChange"></FoodAdd>
         </div>
@@ -11,14 +11,13 @@
     </div>
     <!-- 结算 -->
     <van-submit-bar :price="3050" button-text="提交订单" @submit="onSubmit">
-      <van-checkbox v-model="choses">全选</van-checkbox>
-
+      <van-checkbox v-model="data.choses" @click="choseAll">全选</van-checkbox>
     </van-submit-bar>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, onMounted } from "vue";
+import { ref, reactive, onMounted, computed } from "vue";
 import { useStore } from 'vuex';
 import FoodAdd from '@/components/FoodAdd.vue';
 
@@ -43,7 +42,7 @@ onMounted(() => {
 
 const data = reactive({
   checked: [],
-  choses:true
+  choses: true
 });
 
 // 商品的个数同步
@@ -55,7 +54,33 @@ const onChange = (value: number, detail: List) => {
   });
 }
 
-const onSubmit=()=>{
+//全选或全取消选按钮功能
+const choseAll = () => {
+  if (data.checked.length !== store.state.cartList.length) {
+    init()
+  } else {
+    data.checked = []
+  }
+}
+
+//每一选框点击事件触发
+const groupChange = (result: Array<never>) => {
+  console.log(result);// [0,1,2,3] length: 4
+  if (result.length === store.state.cartList.length) {
+    data.choses = true
+  } else {
+    data.choses = false
+  }
+  return data.checked = result
+}
+
+//计算总价
+const allPrice=computed(()=>{
+  
+})
+
+//结算按钮功能
+const onSubmit = () => {
 
 }
 
