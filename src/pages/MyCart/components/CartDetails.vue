@@ -10,9 +10,19 @@
       </van-checkbox-group>
     </div>
     <!-- 结算 -->
-    <van-submit-bar :price="allPrice*100" button-text="提交订单" @submit="onSubmit">
+    <van-submit-bar :price="allPrice*100" button-text="提交订单" @submit="onSubmit" class="submit-all" v-if="data.isDetele">
       <van-checkbox v-model="data.choses" @click="choseAll">全选</van-checkbox>
     </van-submit-bar>
+
+<!-- 删除 -->
+    <div class="buy" v-else>
+      <div class="left">
+        <van-checkbox v-model="data.choses" @click="choseAll">全选</van-checkbox>
+      </div>
+      <div class="detele">
+        删除
+      </div>
+    </div>
   </div>
 </template>
 
@@ -20,6 +30,7 @@
 import { ref, reactive, onMounted, computed } from "vue";
 import { useStore } from 'vuex';
 import FoodAdd from '@/components/FoodAdd.vue';
+import { Toast } from "vant";
 
 const store = useStore();
 
@@ -42,7 +53,8 @@ onMounted(() => {
 
 const data = reactive({
   result: [] as any[],
-  choses: true
+  choses: true,
+  isDetele:true,
 });
 
 // 商品的个数同步
@@ -87,9 +99,20 @@ const allPrice=computed(()=>{
    return sum;
 })
 
+//更新数据
+const updata=()=>{
+ return store.state.cartList.filter((item:List)=>{
+    data.result.includes(item.id)
+  })
+}
+
 //结算按钮功能
 const onSubmit = () => {
-
+  if(data.result.length!==0){
+    store.commit('PAY',updata())
+  }else{
+    Toast.fail('请选择结算的商品')
+  }
 }
 
 
