@@ -10,16 +10,17 @@
       </van-checkbox-group>
     </div>
     <!-- 结算 -->
-    <van-submit-bar :price="allPrice*100" button-text="提交订单" @submit="onSubmit" class="submit-all" v-if="data.isDetele">
+    <van-submit-bar :price="allPrice * 100" button-text="提交订单" @submit="onSubmit" class="submit-all"
+      v-if="data.isDetele">
       <van-checkbox v-model="data.choses" @click="choseAll">全选</van-checkbox>
     </van-submit-bar>
 
-<!-- 删除 -->
+    <!-- 删除 -->
     <div class="buy" v-else>
       <div class="left">
         <van-checkbox v-model="data.choses" @click="choseAll">全选</van-checkbox>
       </div>
-      <div class="detele">
+      <div class="detele" @click="deteleClick">
         删除
       </div>
     </div>
@@ -27,10 +28,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, onMounted, computed } from "vue";
+import { ref, reactive, onMounted, computed ,defineProps} from "vue";
 import { useStore } from 'vuex';
 import FoodAdd from '@/components/FoodAdd.vue';
+import emitter from '@/common/js/eventBus';
 import { Toast } from "vant";
+
+const {changeShow}=defineProps(['changeShow'])
 
 const store = useStore();
 
@@ -43,6 +47,12 @@ interface List {
   name: number | string
 }
 
+const data = reactive({
+  result: [] as any[],
+  choses: true,
+  isDetele: true,
+});
+
 // 商品默认初始化
 const init = () => {
   data.result = store.state.cartList.map((item: List) => item.id)
@@ -51,11 +61,7 @@ onMounted(() => {
   init()
 })
 
-const data = reactive({
-  result: [] as any[],
-  choses: true,
-  isDetele:true,
-});
+
 
 // 商品的个数同步
 const onChange = (value: number, detail: List) => {
@@ -87,35 +93,56 @@ const groupChange = (result: Array<never>) => {
 }
 
 //计算总价
-const allPrice=computed(()=>{
-   let countList=store.state.cartList.filter((item:List)=>{
-     return data.result.includes(item.id);
-   })
+const allPrice = computed(() => {
+  let countList = store.state.cartList.filter((item: List) => {
+    return data.result.includes(item.id);
+  })
 
-   let sum = 0;
-   countList.forEach((item:List) => {
-    sum+=item.num*item.price
-   });
-   return sum;
+  let sum = 0;
+  countList.forEach((item: List) => {
+    sum += item.num * item.price
+  });
+  return sum;
 })
 
 //更新数据
-const updata=()=>{
- return store.state.cartList.filter((item:List)=>{
-    data.result.includes(item.id)
+const updata = (type: number) => {
+  return store.state.cartList.filter((item: List) => {
+    return type === 2 ? data.result.includes(item.id) : !data.result.includes(item.id)
   })
 }
 
 //结算按钮功能
 const onSubmit = () => {
-  if(data.result.length!==0){
-    store.commit('PAY',updata())
-  }else{
+  if (data.result.length !== 0) {
+    store.commit('PAY', updata(2))
+  } else {
     Toast.fail('请选择结算的商品')
   }
 }
 
+//监听编辑点击
+emitter.on('edit', () => {
+  data.isDetele = !data.isDetele
+})
 
+//删除按钮
+const deteleClick = () => {
+  if (data.result.length) {
+    //更新删除后的购物车的数据
+    store.commit('DETELE',updata(1))
+
+    //删除后的选中
+    data.result=[]
+
+    //购物车无数据展示兜底
+    if(store.state.cartList.length===0){
+      changeShow();
+    }
+  } else {
+    Toast.fail('请选择要删除的商品')
+  }
+}
 
 </script>
 
@@ -134,7 +161,7 @@ const onSubmit = () => {
 
   .buy {
     position: fixed;
-    bottom: 58px;
+    bottom: 48px;
     right: 0;
     display: flex;
     justify-content: space-between;

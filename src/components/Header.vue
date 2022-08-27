@@ -3,6 +3,7 @@
     <van-icon name="arrow-left" class="icon" @click="toBack"/>
     <div class="title">
       {{title}}
+      <div class="edit" v-if="edit" @click="editClick">编辑</div>
     </div>
   </div>
 </template>
@@ -10,11 +11,23 @@
 <script setup lang="ts">
 import {defineProps} from 'vue';
 import {useRouter} from 'vue-router';
-const {title}=defineProps(['title'])
+import emitter from '@/common/js/eventBus';
+import { useStore } from 'vuex';
+import { Toast } from 'vant';
+const {title,edit}=defineProps(['title','edit'])
 
 const router=useRouter()
 const toBack=()=>{
   router.back();
+}
+const store = useStore()
+//编辑按钮
+const editClick=()=>{
+  if (store.state.cartList.length) {
+    emitter.emit("edit")
+  }else{
+    Toast.fail('空空如也')
+  }
 }
 </script>
 
@@ -32,6 +45,7 @@ const toBack=()=>{
     position: absolute;
     right: 15px;
     font-weight: normal;
+    margin-top: -25px;
   }
   .icon{
     position: absolute;

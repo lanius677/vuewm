@@ -14,6 +14,9 @@ mutations:{
   },
   PAY(state,value){
     state.orderList=value
+  },
+  DETELE(state,value){
+    state.cartList=value
   }
 },
 

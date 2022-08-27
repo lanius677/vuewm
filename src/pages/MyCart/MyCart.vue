@@ -1,7 +1,7 @@
 <template>
   <div class="cart">
-    <Header :title="title"></Header>
-    <CartDetails v-if="isShow"></CartDetails>
+    <Header :title="title" :edit="true"></Header>
+    <CartDetails v-if="isShow" :changeShow="changeShow"></CartDetails>
     <Blank v-else></Blank>
   </div>
   <Footer></Footer>
@@ -17,6 +17,10 @@ import { useStore } from 'vuex';
 const title = ref('购物车')
 
 const isShow = ref(true)
+
+const changeShow=()=>{
+  isShow.value=false;
+}
 
 //初始化是否展示
 const store = useStore()

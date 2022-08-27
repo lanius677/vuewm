@@ -18,6 +18,11 @@ export default defineConfig({
       resolvers: [VantResolver()],
     }),
   ],
+  server: {
+    host: '127.0.0.1',//ip地址
+    port: 6777, // 设置服务启动端口号
+    open: false, // 设置服务启动时是否自动打开浏览器
+  },
   css: {
     postcss: {
       plugins: [
