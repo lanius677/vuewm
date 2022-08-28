@@ -137,6 +137,7 @@ const deteleClick = () => {
 
     //购物车无数据展示兜底
     if(store.state.cartList.length===0){
+      store.commit('EDIT','delete')
       changeShow();
     }
   } else {
