@@ -33,6 +33,9 @@ import { useStore } from 'vuex';
 import FoodAdd from '@/components/FoodAdd.vue';
 import emitter from '@/common/js/eventBus';
 import { Toast } from "vant";
+import {useRouter} from 'vue-router';
+
+const router=useRouter()
 
 const {changeShow}=defineProps(['changeShow'])
 
@@ -116,6 +119,7 @@ const updata = (type: number) => {
 const onSubmit = () => {
   if (data.result.length !== 0) {
     store.commit('PAY', updata(2))
+    router.push('./createorder')
   } else {
     Toast.fail('请选择结算的商品')
   }
