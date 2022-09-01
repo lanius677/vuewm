@@ -119,7 +119,10 @@ const updata = (type: number) => {
 const onSubmit = () => {
   if (data.result.length !== 0) {
     store.commit('PAY', updata(2))
-    router.push('./createorder')
+    router.push({
+      path:'./createorder',
+      query:{list:data.result}
+    })
   } else {
     Toast.fail('请选择结算的商品')
   }
