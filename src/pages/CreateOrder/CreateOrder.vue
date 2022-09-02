@@ -68,7 +68,9 @@ const handleCreateOrder = () => {
     let newList=store.state.cartList.filter((item:List)=>{
        return !route.query.list?.includes(item.id+"")
     })
+    console.log(newList);
     store.commit('DETELE',newList)
+    store.commit('UPDATAORDER')
     router.push('./order');
   });
 }

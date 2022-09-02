@@ -5,44 +5,55 @@ export default createStore({
   state: {
     cartList: [],// 购物车的数据
     orderList: [],//生成订单列表数据
+    orderListed: [],//生成订单后列表数据
     edit: true,//编辑按钮的状态
-    userAddress:[
+    userAddress: [
       {
-      id:1001,
-      name:'fjx',
-      tel:'123123123',
-      province:'广东省',
-      city:'广州市',
-      county:'天河区',
-      addressDetail:'xxxxxxxxxxx',
-      isDefault:true,
-      areaCode:'110101'
-    },
-    {
-      id:1001,
-      name:'lqq',
-      tel:'123123123',
-      province:'广东省',
-      city:'广州市',
-      county:'天河区',
-      addressDetail:'xxxxxxxxxxx',
-      isDefault:false,
-      areaCode:'110101'
-    },
-  ]
+        id: 1001,
+        name: 'fjx',
+        tel: '123123123',
+        province: '广东省',
+        city: '广州市',
+        county: '天河区',
+        addressDetail: 'xxxxxxxxxxx',
+        isDefault: true,
+        areaCode: '110101'
+      },
+      {
+        id: 1001,
+        name: 'lqq',
+        tel: '123123123',
+        province: '广东省',
+        city: '广州市',
+        county: '天河区',
+        addressDetail: 'xxxxxxxxxxx',
+        isDefault: false,
+        areaCode: '110101'
+      },
+    ]
   },
 
   //改变存放数据操作
   mutations: {
+
+    // 添加购物车
     ADDCART(state, value) {
       state.cartList = value
     },
+    //结算按钮
     PAY(state, value) {
       state.orderList = value
     },
+    //删除
     DETELE(state, value) {
       state.cartList = value
     },
+    //生成订单
+    UPDATAORDER(state) {
+      state.orderListed = state.orderListed.concat(state.orderList)
+
+    },
+    //编辑按钮
     EDIT(state, value) {
       if (value) {
         state.edit = true
