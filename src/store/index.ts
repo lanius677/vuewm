@@ -11,7 +11,7 @@ export default createStore({
       {
         id: 1001,
         name: 'fjx',
-        tel: '123123123',
+        tel: '12312312323',
         province: '广东省',
         city: '广州市',
         county: '天河区',
@@ -20,9 +20,9 @@ export default createStore({
         areaCode: '110101'
       },
       {
-        id: 1001,
+        id: 1002,
         name: 'lqq',
-        tel: '123123123',
+        tel: '12312312324',
         province: '广东省',
         city: '广州市',
         county: '天河区',
@@ -59,6 +59,37 @@ export default createStore({
         state.edit = true
       } else {
         state.edit = !state.edit
+      }
+    },
+
+    //新增地址
+    ADDADRESS(state, value) {
+      state.userAddress.map((item) => {
+        if (value.isDefault) {
+          item.isDefault = false
+        }
+      })
+      state.userAddress.push(value)
+    },
+
+    //编辑地址
+    CHANGEADDRESS(state,value){
+      state.userAddress= state.userAddress.map((item)=>{
+        if(value.isDefault){
+          item.isDefault=false
+        }
+      return item.id===value.id?value:item
+      })
+    },
+
+    //删除地址
+    DETELEADDRESS(state,value){
+      state.userAddress= state.userAddress.filter((item)=>{
+        return !(value.id===item.id)
+      })
+
+      if(value.isDefault && state.userAddress.length){
+        state.userAddress[0].isDefault=true
       }
     }
   },

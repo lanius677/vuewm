@@ -1,7 +1,12 @@
 <template>
   <div class="createOrderContainer">
     <Header title="生成订单"></Header>
-    <van-contact-card type="edit" :tel="data.currentContact.tel" :name="data.currentContact.name" @click="onEdit" />
+    <van-contact-card
+      type="edit"
+      :tel="data.currentContact.tel"
+      :name="data.currentContact.name"
+      @click="onEdit"
+    />
 
     <div class="content">
       <div class="" v-for="(i, index) in store.state.orderList" :key="index">
@@ -14,92 +19,93 @@
         <span>商品金额</span>
         <span>￥{{ initPrice }}</span>
       </div>
-      <van-button class="payButton" type="primary" @click="handleCreateOrder" block>生成订单</van-button>
+      <van-button class="payButton" type="primary" @click="handleCreateOrder" block
+        >生成订单</van-button
+      >
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import Header from '@/components/Header.vue';
-import { computed, onMounted, reactive } from 'vue';
-import { useStore } from 'vuex';
-import { useRouter,useRoute } from 'vue-router';
-import { Dialog } from 'vant';
-import 'vant/lib/dialog/style/';
-const store = useStore()
-const router = useRouter()
-const route=useRoute()
+import Header from "@/components/Header.vue";
+import { computed, onMounted, reactive } from "vue";
+import { useStore } from "vuex";
+import { useRouter, useRoute } from "vue-router";
+import { Dialog } from "vant";
+import "vant/lib/dialog/style/";
+const store = useStore();
+const router = useRouter();
+const route = useRoute();
 
 const data = reactive({
   currentContact: {
-    name: '',
-    tel: '',
+    name: "",
+    tel: "",
   },
 
-  allPrice: 0
-})
+  allPrice: 0,
+});
 
 interface addressList extends List {
-  tel: string,
-  province: string,
-  county: string,
-  addressDetail: string,
-  areaCode: string | number,
-  isDefault: boolean
+  tel: string;
+  province: string;
+  county: string;
+  addressDetail: string;
+  areaCode: string | number;
+  isDefault: boolean;
 }
 
 interface List {
-  id: number,
-  name: string,
-  price: number,
-  num: number,
+  id: number;
+  name: string;
+  price: number;
+  num: number;
 }
 
 //地址编辑按钮
 const onEdit = () => {
-
-}
+  router.push("./address");
+};
 
 //生成订单按钮
 const handleCreateOrder = () => {
   Dialog.alert({
-    message: '你的订单已完成',
+    message: "你的订单已完成",
   }).then(() => {
-    let newList=store.state.cartList.filter((item:List)=>{
-       return !route.query.list?.includes(item.id+"")
-    })
+    let newList = store.state.cartList.filter((item: List) => {
+      return !route.query.list?.includes(item.id + "");
+    });
     console.log(newList);
-    store.commit('DETELE',newList)
-    store.commit('UPDATAORDER')
-    router.push('./order');
+    store.commit("DETELE", newList);
+    store.commit("UPDATAORDER");
+    router.push("./order");
   });
-}
+};
 
 //总价的初始化
 const initPrice = computed(() => {
-  let price: number = 0
+  let price: number = 0;
   if (store.state.orderList.length) {
     store.state.orderList.map((item: List) => {
-      price += item.num * item.price
-    })
+      price += item.num * item.price;
+    });
   }
-  return data.allPrice = price
-})
+  return (data.allPrice = price);
+});
 
 //用户信息初始化
 const initUser = () => {
   store.state.userAddress.map((item: addressList) => {
     if (item.isDefault) {
-      data.currentContact.name = item.name
-      data.currentContact.tel = item.tel
+      data.currentContact.name = item.name;
+      data.currentContact.tel = item.tel;
     }
-  })
-}
+  });
+};
 
 onMounted(() => {
-  initUser()
-})
-
+  initUser();
+});
 </script>
 
 <style scoped lang="less">
@@ -119,7 +125,7 @@ onMounted(() => {
     background: #fff;
     border-top: 1px solid #e9e9e9;
 
-    >div {
+    > div {
       display: flex;
       justify-content: space-between;
       padding: 0 5%;

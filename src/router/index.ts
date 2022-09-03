@@ -30,6 +30,16 @@ const routes: Array<RouteRecordRaw> = [
     path: '/createorder',
     component: () => import('../pages/CreateOrder/CreateOrder.vue')
   },
+  {
+    path: '/address',
+    component: () => import('../pages/Address/Address.vue')
+  },
+
+  {
+    path: '/addressedit',
+    component: () => import('../pages/AddressEdit/AddressEdit.vue')
+  },
+ 
 
 ]
 
