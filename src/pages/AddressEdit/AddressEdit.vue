@@ -87,16 +87,12 @@ const onSave = (content: List) => {
     store.commit("CHANGEADDRESS", content);
   }
   Toast.success("保存成功");
-  setTimeout(() => {
-    router.back();
-  }, 1000);
+    router.push('./address');
 };
 
 const onDelete = (content: List) => {
   store.commit("DETELEADDRESS",content);
-  setTimeout(() => {
     router.back();
-  }, 1000);
 };
 </script>
 

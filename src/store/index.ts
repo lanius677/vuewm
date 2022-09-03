@@ -73,23 +73,23 @@ export default createStore({
     },
 
     //编辑地址
-    CHANGEADDRESS(state,value){
-      state.userAddress= state.userAddress.map((item)=>{
-        if(value.isDefault){
-          item.isDefault=false
+    CHANGEADDRESS(state, value) {
+      state.userAddress = state.userAddress.map((item) => {
+        if (value.isDefault) {
+          item.isDefault = false
         }
-      return item.id===value.id?value:item
+        return item.id === value.id ? value : item
       })
     },
 
     //删除地址
-    DETELEADDRESS(state,value){
-      state.userAddress= state.userAddress.filter((item)=>{
-        return !(value.id===item.id)
+    DETELEADDRESS(state, value) {
+      state.userAddress = state.userAddress.filter((item) => {
+        return !(value.id === item.id)
       })
 
-      if(value.isDefault && state.userAddress.length){
-        state.userAddress[0].isDefault=true
+      if (value.isDefault && state.userAddress.length) {
+        state.userAddress[0].isDefault = true
       }
     }
   },
