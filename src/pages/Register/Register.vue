@@ -33,7 +33,6 @@
 <script setup lang="ts">
 import Header from "@/components/Header.vue";
 import { Toast } from "vant";
-import 'vant/lib/toast/style/index';
 import { reactive } from "vue";
 import {useRouter} from 'vue-router';
 
