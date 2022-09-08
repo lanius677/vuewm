@@ -35,8 +35,6 @@
 <script setup lang="ts">
 import Header from "@/components/Header.vue";
 import { Dialog, Toast } from "vant";
-import 'vant/lib/dialog/style/index';
-import 'vant/lib/toast/style/index';
 import { useRouter } from "vue-router";
 import { reactive } from "vue";
 

@@ -55,6 +55,10 @@ const routes: Array<RouteRecordRaw> = [
     path: '/register',
     component: () => import('../pages/Register/Register.vue'),
   },
+  {
+    path: '/userinfoedit',
+    component: () => import('../pages/UserInfoEdit/UserInfoEdit.vue'),
+  },
 
 ]
 
@@ -66,7 +70,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.meta.isAuth) {
-    if (localStorage.isLogin === 1) {
+    if (localStorage.isLogin === '1') {
       next()
     }else {
       Toast('请先登录')

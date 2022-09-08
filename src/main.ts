@@ -1,9 +1,10 @@
 import { createApp } from 'vue'
 import './style.css'
+import 'vant/lib/index.css'
 import './assets/icons/iconfont/iconfont.css';
 import App from './App.vue'
 import 'amfe-flexible';
-import { Button, Icon, Tab, Tabs, TreeSelect, Stepper, ActionBar, ActionBarIcon, ActionBarButton, Popup, Checkbox, CheckboxGroup, SubmitBar, ContactCard, Card, Dialog, AddressList, AddressEdit, Form, Field, CellGroup } from 'vant';
+import { Button, Icon, Tab, Tabs, TreeSelect, Stepper, ActionBar, ActionBarIcon, ActionBarButton, Popup, Checkbox, CheckboxGroup, SubmitBar, ContactCard, Card, Dialog, AddressList, AddressEdit, Form, Field, CellGroup} from 'vant';
 import router from '@/router/index';
 import store from '@/store/index';
 
