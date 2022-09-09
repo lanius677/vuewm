@@ -29,6 +29,7 @@ import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
 import Blank from "@/components/Blank.vue";
 
+
 import { useStore } from "vuex";
 import { reactive } from "vue";
 

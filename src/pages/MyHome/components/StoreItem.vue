@@ -1,8 +1,8 @@
 <template>
-  <div class="item" v-for="(i, index) in item" :key="index" @click="toStore">
+  <div class="item" v-for="(i, index) in item" :key="index" @click="toStore(i.title)">
     <img :src="i.pic" alt="">
     <div class="itemRight">
-      <div class="title">{{ i.title }}</div>
+      <div class="title">{{ i.title}}</div>
       <div class="sales">{{ i.sales }}</div>
       <div class="price">{{ i.price }}</div>
       <div class="label">
@@ -13,15 +13,27 @@
 </template>
 
 <script setup lang="ts">
-import router from '@/router';
+import {useRouter} from 'vue-router';
 import { defineProps, reactive } from 'vue';
 const { item } = defineProps(['item'])
 
-const toStore = () => {
-  router.push('/store')
+interface List {
+  id: number,
+  price: number,
+  title: string,
+  num: number,
+  add: boolean,
+  img:string,
 }
 
-console.log('item:', item);
+const router=useRouter()
+const toStore = (title:string) => {
+  router.push({
+    path:'./store',
+    query:{title}
+  })
+}
+
 </script>
 
 <style scoped lang="less">

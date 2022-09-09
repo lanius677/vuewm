@@ -4,65 +4,65 @@
     "big_classify": [
       {
         "name": "美食",
-        "icon": "icon-apple-and-pear"
+        "icon": "icon-xinxianguoshu_xinxianshuiguomangguo"
       },
       {
         "name": "甜点饮品",
-        "icon": "icon-tianpin"
+        "icon": "icon-xinxianguoshu_xinxianshucaiyumi"
       },
       {
         "name": "超市便利",
-        "icon": "icon-chaoshi"
+        "icon": "icon-xinxianguoshu_xinxianshuiguoliulian"
       },
       {
         "name": "生鲜果蔬",
-        "icon": "icon-shuiguo"
+        "icon": "icon-xinxianguoshu_xinxianshuiguoliulian"
       },
       {
         "name": "滴团买药",
-        "icon": "icon-yaopin"
+        "icon": "icon-waimaidingdan0101"
       }
     ],
     "small_classify": [
       {
         "name": "午餐",
-        "icon": "icon-iconfonttubiaozhizuo-1"
+        "icon": "icon-xinxianguoshu_meiweimianbao"
       },
       {
         "name": "买酒",
-        "icon": "icon-iconfonttubiaozhizuo-"
+        "icon": "icon-xinxianguoshu_xinxianshuiguoboluo"
       },
       {
         "name": "新鲜水果",
-        "icon": "icon-iconfonttubiaozhizuo-9"
+        "icon": "icon-xinxianguoshu_xinxianshuiguojuzi"
       },
       {
         "name": "汉堡披萨",
-        "icon": "icon-iconfonttubiaozhizuo-6"
+        "icon": "icon-xinxianguoshu_meiweizaocanjidan"
       },
       {
         "name": "休闲饮品",
-        "icon": "icon-iconfonttubiaozhizuo-8"
+        "icon": "icon-xinxianguoshu_xinxianshuiguoxiangjiao"
       },
       {
         "name": "夜宵",
-        "icon": "icon-iconfonttubiaozhizuo-3"
+        "icon": "icon-xinxianguoshu_meiweimianbao"
       },
       {
         "name": "吐司",
-        "icon": "icon-iconfonttubiaozhizuo-5"
+        "icon": "icon-xinxianguoshu_xinxianshucaiqiezi"
       },
       {
         "name": "跑腿",
-        "icon": "icon-paotuiAPP"
+        "icon": "icon-waimai"
       },
       {
         "name": "美人佳丽",
-        "icon": "icon-iconfonttubiaozhizuo-2"
+        "icon": "icon-xinxianguoshu_xinxianshuiguoliulian"
       },
       {
         "name": "全部分类",
-        "icon": "icon-fenlei"
+        "icon": "icon-dingdan"
       }
     ],
     "centent_nav_list": [

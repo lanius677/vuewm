@@ -20,13 +20,13 @@
           </div>
           <div class="classify">
             <div class="big-classify">
-              <div v-for="(i, index) in data.big_classify" :key="index">
+              <div v-for="(i, index) in data.homeData.big_classify" :key="index">
                 <span class="iconfont" :class="i.icon" />
                 <p>{{ i.name }}</p>
               </div>
             </div>
             <div class="small-classify">
-              <div v-for="(i, index) in data.small_classify" :key="index">
+              <div v-for="(i, index) in data.homeData.small_classify" :key="index">
                 <span class="iconfont" :class="i.icon" />
                 <p>{{ i.name }}</p>
               </div>
@@ -34,7 +34,7 @@
           </div>
         </div>
         <van-tabs class="van-tabs">
-          <van-tab v-for="(i, index) in data.centent_nav_list" :key="index" :title="i.tab">
+          <van-tab v-for="(i, index) in data.homeData.centent_nav_list" :key="index" :title="i.tab">
             <Store :storeList="i.data"></Store>
           </van-tab>
         </van-tabs>
@@ -47,126 +47,28 @@
 <script setup lang="ts">
 import Footer from "@/components/Footer.vue";
 import Store from './components/Store.vue';
-import { reactive } from "vue";
-import {Toast} from 'vant';
+import { getHomeData  } from '@/request/api';
+import ApiDataType from '@/request/apiDataType';
+import { onMounted, reactive } from "vue";
+import { Toast } from 'vant';
 const service = () => {
   Toast('敬请期待');
 }
-const data = reactive({
-  big_classify: [
-    { name: "美食", icon: "icon-xinxianguoshu_xinxianshuiguoningmeng" },
-    { name: "甜点饮品", icon: "icon-xinxianguoshu_xinxianshuiguoxiangjiao" },
-    { name: "超市便利", icon: "icon-xinxianguoshu_xinxianshuiguotaozi" },
-    { name: "生鲜果蔬", icon: "icon-xinxianguoshu_xinxianshuiguoxiangjiao" },
-    { name: "代跑买药", icon: "icon-xinxianguoshu_xinxianshucaitudou" },
-  ],
-  small_classify: [
-    { name: "午餐", icon: "icon-xinxianguoshu_xinxianshucaibaocai" },
-    { name: "买酒", icon: "icon-xinxianguoshu_xinxianshuiguoniuyouguo" },
-    { name: "新鲜水果", icon: "icon-xinxianguoshu_xinxianshuiguochengzi" },
-    { name: "汉堡披萨", icon: "icon-xinxianguoshu_meiweizaocanjidan" },
-    { name: "休闲饮品", icon: "icon-xinxianguoshu_xinxianshuiguojuzi" },
-    { name: "夜宵", icon: "icon-xinxianguoshu_meiweimianbao" },
-    { name: "吐司", icon: "icon-xinxianguoshu_meiweimianbao" },
-    { name: "跑腿", icon: "icon-waimai" },
-    { name: "美人佳丽", icon: "icon-xinxianguoshu_xinxianshuiguotaozi" },
-    { name: "全部分类", icon: "icon-xinxianguoshu_meiweimianbao" },
-  ],
-  centent_nav_list: [
-    {
-      tab: "天天神券",
-      data: [
-        {
-          pic:
-            "https://img1.baidu.com/it/u=1599947592,1695977044&fm=253&fmt=auto&app=138&f=JPEG?w=640&h=440",
-          title: "鱼拿酸菜鱼",
-          sales: "2888",
-          price: "20",
-          label: ["门店上新", "很下饭"],
-        },
-        {
-          pic:
-            "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.cfcy168.com%2FUploadFiles%2F2020%2F2%2F15904074889874037.jpg&refer=http%3A%2F%2Fwww.cfcy168.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1645421933&t=66b58fbba9dce6f6b397e38820de24dc",
-          title: "隆江猪脚饭",
-          sales: "2888",
-          price: "20",
-          label: ["门店上新", "很下饭"],
-        },
-        {
-          pic:
-            "https://img1.baidu.com/it/u=1599947592,1695977044&fm=253&fmt=auto&app=138&f=JPEG?w=640&h=440",
-          title: "鱼拿酸菜鱼",
-          sales: "2888",
-          price: "20",
-          label: ["门店上新", "很下饭"],
-        },
-        {
-          pic:
-            "https://img1.baidu.com/it/u=1599947592,1695977044&fm=253&fmt=auto&app=138&f=JPEG?w=640&h=440",
-          title: "鱼拿酸菜鱼",
-          sales: "2888",
-          price: "20",
-          label: ["门店上新", "很下饭"],
-        },
-      ],
-    },
-    {
-      tab: "减配送费",
-      data: [
-        {
-          pic:
-            "https://img1.baidu.com/it/u=1599947592,1695977044&fm=253&fmt=auto&app=138&f=JPEG?w=640&h=440",
-          title: "鱼拿酸菜鱼",
-          sales: "2888",
-          price: "20",
-          label: ["门店上新", "很下饭"],
-        },
-      ],
-    },
-    {
-      tab: "点评高分",
-      data: [
-        {
-          pic:
-            "https://img1.baidu.com/it/u=1599947592,1695977044&fm=253&fmt=auto&app=138&f=JPEG?w=640&h=440",
-          title: "鱼拿酸菜鱼",
-          sales: "2888",
-          price: "20",
-          label: ["门店上新", "很下饭"],
-        },
-        {
-          pic:
-            "https://img1.baidu.com/it/u=1599947592,1695977044&fm=253&fmt=auto&app=138&f=JPEG?w=640&h=440",
-          title: "鱼拿酸菜鱼",
-          sales: "2888",
-          price: "20",
-          label: ["门店上新", "很下饭"],
-        },
-      ],
-    },
-    {
-      tab: "会员满减",
-      data: [
-        {
-          pic:
-            "https://img1.baidu.com/it/u=1599947592,1695977044&fm=253&fmt=auto&app=138&f=JPEG?w=640&h=440",
-          title: "鱼拿酸菜鱼",
-          sales: "2888",
-          price: "20",
-          label: ["门店上新", "很下饭"],
-        },
-        {
-          pic:
-            "https://img1.baidu.com/it/u=1599947592,1695977044&fm=253&fmt=auto&app=138&f=JPEG?w=640&h=440",
-          title: "鱼拿酸菜鱼",
-          sales: "2888",
-          price: "20",
-          label: ["门店上新", "很下饭"],
-        },
-      ],
-    },
-  ],
-});
+
+const data= reactive({
+  homeData: {} as ApiDataType
+})
+
+//数据请求
+const getHome = async () => {
+  const res = await getHomeData()
+  if (res.status === 200 && res.data.code === 0) {
+    data.homeData = res.data.data
+  }
+}
+onMounted(() => {
+  getHome()
+})
 </script>
 
 <style scoped lang="less">
